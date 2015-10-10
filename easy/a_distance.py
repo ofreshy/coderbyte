@@ -1,4 +1,3 @@
-
 def ABCheck(str):
     for i in range(len(str)-4):
         if str[i] in 'aA' and str[i+4] in 'bB':
