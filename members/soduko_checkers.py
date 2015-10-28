@@ -59,12 +59,15 @@ def SudokuQuadrantChecker(strArr):
         if cell == 'x':
             return True
 
+        # check row
         if any((cell == soduko_mat[i][k] for k in range(9) if k != j)):
             return False
 
+        # check col
         if any((cell == soduko_mat[k][j] for k in range(9) if k != i)):
             return False
 
+        # check quadrant
         if any((cell == o for o in get_quadrant(i, j))):
             return False
 
@@ -74,8 +77,10 @@ def SudokuQuadrantChecker(strArr):
         for j in range(9):
             if not is_valid(i, j):
                 quadrants.add(get_quadrant_label(i, j))
-
-    return ",".join(sorted(list(quadrants)))
+    if not quadrants:
+        return "legal"
+    else:
+        return ",".join(sorted(list(quadrants)))
 
 
 def get_quadrant_label(i, j):
