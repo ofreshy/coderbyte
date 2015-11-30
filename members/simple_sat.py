@@ -17,17 +17,20 @@ A Boolean formula will always have at most 5 letters, i.e. a, b, c, d and e.
 A tilde will never appear outside of a parenthesis, i.e. ~(a&b).
 """
 
-from itertools import permutations
-
-def SimpleSAT(str):
-
-  expression = ""
-
-  # code goes here
-  text = "Code must be properly"
-  more = " indented in Python!"
-  return text + more
+from itertools import product
 
 
-print list(permutations((True, True, False)))
+def SimpleSAT(exp):
+    expression = exp.\
+        replace("~", " not ").\
+        replace("&", " and ").\
+        replace("|", " or ")
+    letters = tuple(set([l for l in expression if l.isalpha()]))
+    combinations = product([0, 1], repeat=len(letters))
 
+    for combination in combinations:
+        for k, v in zip(letters, combination):
+            locals()[k] = bool(v)
+        if eval(expression):
+            return "yes"
+    return "no"
