@@ -85,22 +85,3 @@ def SudokuQuadrantChecker(strArr):
 
 def get_quadrant_label(i, j):
     return "%s" % ((j / 3) + 3 * (i / 3) + 1)
-
-
-# def SudokuQuadrantChecker(strArr):
-#     bad_quadrants=set()
-#     plateau_x=[list(row[1::2]) for row in strArr]
-#     quadrants_x=["123","456","789"]
-#     plateau_y=zip(*plateau_x)
-#     quadrants_y=["147","258","369"]
-#
-#     for (plateau, quadrants) in [(plateau_x,quadrants_x),(plateau_y,quadrants_y)]:
-#         for i in range(9):
-#             row = plateau[i]
-#             repet=dict((num,row.count(num)) for num in row)
-#             for j in range(9):
-#                 if repet[row[j]]>1 and row[j]!='x':
-#                     bad_quadrants.add(quadrants[i/3][j/3])
-#     if len(bad_quadrants)==0:
-#         return 'legal'
-#     return ",".join(sorted(bad_quadrants))
